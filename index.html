@@ -56,26 +56,6 @@
             font-size: 0.9rem;
         }
 
-        .model-selector {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .model-selector label {
-            color: white;
-            margin-right: 10px;
-        }
-
-        .model-selector select {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 12px;
-            border-radius: 5px;
-            outline: none;
-        }
-
         .chat-container {
             flex: 1;
             overflow-y: auto;
@@ -177,15 +157,6 @@
             .message {
                 max-width: 90%;
             }
-            
-            .model-selector {
-                text-align: center;
-            }
-            
-            .model-selector select {
-                width: 100%;
-                margin-top: 10px;
-            }
         }
     </style>
 </head>
@@ -193,23 +164,12 @@
     <div class="container">
         <header>
             <h1>AI Chat Assistant</h1>
-            <p>Powered by OpenRouter | Knowledge up to November 27, 2025</p>
+            <p>Powered by OpenRouter | R1 distill llama 70B | Knowledge up to November 27, 2025</p>
         </header>
-        
-        <div class="model-selector">
-            <label for="model-select">Select Model:</label>
-            <select id="model-select">
-                <option value="google/gemini-flash-1.5" selected>Gemini Flash 1.5 (free)</option>
-                <option value="google/gemma-2-9b-it:free">Gemma 2 9B (free)</option>
-                <option value="microsoft/phi-3-medium-128k-instruct:free">Phi-3 Medium (free)</option>
-                <option value="nousresearch/hermes-2-pro-llama-3-8b:free">Hermes 2 Pro (free)</option>
-                <option value="teknium/openhermes-2.5-mistral-7b:free">OpenHermes 2.5 (free)</option>
-            </select>
-        </div>
         
         <div class="chat-container" id="chat-container">
             <div class="message bot-message">
-                Hello! I'm your AI assistant powered by OpenRouter. Select a model from the dropdown above. How can I help you today?
+                Hello! I'm your AI assistant powered by R1 distill llama 70B. How can I help you today?
             </div>
         </div>
         
@@ -230,7 +190,6 @@
                 this.userInput = document.getElementById('user-input');
                 this.sendBtn = document.getElementById('send-btn');
                 this.typingIndicator = document.getElementById('typing-indicator');
-                this.modelSelect = document.getElementById('model-select');
                 this.conversationId = 'default';
                 
                 this.initializeEventListeners();
@@ -242,11 +201,6 @@
                     if (e.key === 'Enter') {
                         this.sendMessage();
                     }
-                });
-                
-                // Add model change listener
-                this.modelSelect.addEventListener('change', () => {
-                    this.addMessage(`Model changed to: ${this.modelSelect.options[this.modelSelect.selectedIndex].text}`, false);
                 });
             }
             
@@ -309,7 +263,7 @@
                         body: JSON.stringify({
                             message: message,
                             conversationId: this.conversationId,
-                            model: this.modelSelect.value // Include selected model
+                            model: 'microsoft/r1-distill-llama-70b' // Fixed model
                         })
                     });
                     
