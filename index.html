@@ -164,12 +164,12 @@
     <div class="container">
         <header>
             <h1>AI Chat Assistant</h1>
-            <p>Powered by OpenRouter | R1 distill llama 70B | Knowledge up to November 27, 2025</p>
+            <p>Powered by OpenRouter | Knowledge up to November 27, 2025</p>
         </header>
         
         <div class="chat-container" id="chat-container">
             <div class="message bot-message">
-                Hello! I'm your AI assistant powered by R1 distill llama 70B. How can I help you today?
+                Hello! I'm your AI assistant powered by OpenRouter. How can I help you today?
             </div>
         </div>
         
@@ -262,8 +262,7 @@
                         },
                         body: JSON.stringify({
                             message: message,
-                            conversationId: this.conversationId,
-                            model: 'microsoft/r1-distill-llama-70b' // Fixed model
+                            conversationId: this.conversationId
                         })
                     });
                     
